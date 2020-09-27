@@ -1,4 +1,4 @@
-from datetime import date
+import datetime
 from pathlib import Path
 
 import requests
@@ -30,7 +30,7 @@ def scrap_classes():
             time = class_data['StartTime'] + ' - ' + class_data['EndTime']
 
             code = class_data['ClassCode']
-            delivery = class_data['DeliveryMode']
+            delivery = class_data['DeliveryMode'] + ' - ' + class_data['SsrComponentDescription']
             course = class_data['CourseCode'] + ' - ' + class_data['CourseTitleEn']
 
             week = class_data['WeekSession']
@@ -49,7 +49,7 @@ def scrap_classes():
 
 
 if __name__ == '__main__':
-    current_date = str(date.today())
+    current_date = str(datetime.date.today())
     last_date = None
 
     temp_file = Path('temp.txt')
