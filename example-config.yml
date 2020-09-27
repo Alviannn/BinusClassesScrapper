@@ -1,0 +1,5 @@
+edge-driver-path: 'C:/Web Drivers/msedgedriver.exe'
+
+login:
+  username: 'user.name'
+  password: 'try guessing a password?'
