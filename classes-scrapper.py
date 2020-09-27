@@ -1,8 +1,14 @@
+from datetime import date
+from pathlib import Path
+
 import requests
+
 from scrapper_util import *
 
 
-def main():
+def scrap_classes():
+    """Handles scrapping the BINUS classes data"""
+
     config = load_config()
     session = requests.session()
 
@@ -43,5 +49,22 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
-    save_results()
+    current_date = str(date.today())
+    last_date = None
+
+    temp_file = Path('temp.txt')
+    results_file = Path('result.json')
+
+    if temp_file.exists() and results_file.exists():
+        with open(temp_file, 'r', encoding='utf8') as stream:
+            last_date = stream.readline()
+
+    if current_date == last_date:
+        view_results()
+    else:
+        with open(temp_file, 'w', encoding='utf8') as stream:
+            stream.write(current_date)
+
+        scrap_classes()
+        save_results()
+        view_results(True)

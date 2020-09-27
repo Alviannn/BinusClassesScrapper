@@ -1,2 +1,5 @@
 config.yml
+result.json
+temp.txt
+
 /.idea/
